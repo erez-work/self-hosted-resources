@@ -34,6 +34,10 @@ spec:
       imagePullSecrets:
       - name: {{ .Values.global.pullSecretRef }}
       {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         {{- toYaml .Values.api.affinity | nindent 8 }}
       tolerations:
